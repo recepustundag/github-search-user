@@ -22,6 +22,7 @@ export default {
       this.$store.dispatch('REPO', this.search.replaceAll(' ', ''))
       this.$store.dispatch('FOLLOWERS', this.search.replaceAll(' ', ''))
       this.$store.dispatch('FOLLOWING', this.search.replaceAll(' ', ''))
+      this.$store.dispatch('GISTS', this.search.replaceAll(' ', ''))
       this.$store.dispatch('LANGUAGES', this.search.replaceAll(' ', ''))
     }
   }

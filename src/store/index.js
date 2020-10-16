@@ -10,6 +10,7 @@ export default new Vuex.Store({
     followers: null,
     following: null,
     languages: [],
+    gists: null
   },
   getters: {
     USER(state) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     LANGUAGES(state) {
       return state.languages;
+    },
+    GISTS(state) {
+      return state.gists;
     },
   },
   mutations: {
@@ -51,6 +55,9 @@ export default new Vuex.Store({
       }else{
         state.languages = []
       }
+    },
+    GISTS(state, gists) {
+      state.gists = gists;
     },
   },
   actions: {
@@ -87,6 +94,13 @@ export default new Vuex.Store({
         .then((response) => response.json())
         .then((res) => {
           context.commit("LANGUAGES", res);
+        });
+    },
+    GISTS(context, search) {
+      fetch("https://api.github.com/users/" + search + "/gists")
+        .then((response) => response.json())
+        .then((res) => {
+          context.commit("GISTS", res);
         });
     },
   },
