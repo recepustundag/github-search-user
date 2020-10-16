@@ -255,11 +255,13 @@
                     </div>
                   </div>
                   <div class="flex item-center justify-center">
+                    <router-link to="/users">
                     <button
                       class="bg-gray-200 text-gray-500 font-semibold text-xs py-1 px-4 rounded"
                     >
                       View All
                     </button>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -344,14 +346,6 @@ export default {
         ],
       },
     };
-  },
-  created() {
-      for (const item in this.$store.state.languages) {
-        this.language.push({
-          name: item,
-          y: this.$store.state.languages[item]
-        });
-      }
   },
   computed: {
     user () {
