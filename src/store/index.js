@@ -8,6 +8,7 @@ export default new Vuex.Store({
     user: null,
     repos: null,
     followers: null,
+    following: null,
     languages: [],
   },
   getters: {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     FOLLOWERS(state) {
       return state.followers;
+    },
+    FOLLOWING(state) {
+      return state.following;
     },
     LANGUAGES(state) {
       return state.languages;
@@ -33,6 +37,9 @@ export default new Vuex.Store({
     },
     FOLLOWERS(state, followers) {
       state.followers = followers;
+    },
+    FOLLOWING(state, following) {
+      state.following = following;
     },
     LANGUAGES(state, language) {
       if (typeof language.message === "undefined") {
@@ -66,6 +73,13 @@ export default new Vuex.Store({
         .then((response) => response.json())
         .then((res) => {
           context.commit("FOLLOWERS", res);
+        });
+    },
+    FOLLOWING(context, search) {
+      fetch("https://api.github.com/users/" + search + "/following")
+        .then((response) => response.json())
+        .then((res) => {
+          context.commit("FOLLOWING", res);
         });
     },
     LANGUAGES(context, search) {
