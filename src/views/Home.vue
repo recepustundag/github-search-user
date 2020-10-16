@@ -29,13 +29,19 @@
                     />
                   </g>
                 </svg>
-              </div>
+              </div>              
+              <template v-if="repos != null">
+              <router-link to="/repos" class="flex flex-col items-start leading-6">
+                <span class="font-semibold text-2xl">{{ user.public_repos }}</span>
+                <span class="text-gray-500 text-sm">Repos</span>
+              </router-link>
+              </template>
+              <template v-else>
               <div class="flex flex-col items-start leading-6">
-                <span class="font-semibold text-2xl">{{
-                  user.public_repos
-                }}</span>
+                <span class="font-semibold text-2xl">{{ user.public_repos }}</span>
                 <span class="text-gray-500 text-sm">Repos</span>
               </div>
+              </template>
             </div>
             <div
               class="bg-white flex items-center justify-start py-3 px-6 rounded"
@@ -335,6 +341,9 @@ export default {
     },
     languages() {
       return this.$store.state.languages
+    },
+    repos() {
+      return this.$store.state.repos
     }
   }
 };
